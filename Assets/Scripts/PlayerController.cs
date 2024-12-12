@@ -37,7 +37,12 @@ public class PlayerController : MonoBehaviour
     public KeyCode crouchKeyCode;
     public KeyCode otherCrouchKeyCode;
 
-    [Header("Controller")]
+    [Header("Player Stats")]
+    public bool takenDamage = false;
+    public float damageCoolDown = 0.5f;
+    public int maxHealth = 5;
+    public int health = 10;
+    public int healthPickUp = 5; // For future referance
 
     Vector3 velocity;
 
@@ -128,8 +133,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     { MoveInput(input.Movement.ReadValue<Vector2>()); }
 
-    void LateUpdate()
-    { LookInput(input.Look.ReadValue<Vector2>()); }
+    void LateUpdate() => LookInput(input.Look.ReadValue<Vector2>());
 
     void MoveInput(Vector2 input)
     {

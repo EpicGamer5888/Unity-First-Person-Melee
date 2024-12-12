@@ -19,12 +19,12 @@ public class LightingManager : MonoBehaviour
         if (Application.isPlaying)
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24; //Clamp between 0-24
-            UpdateLighting(TimeOfDay / 24f);
+            TimeOfDay %= 164; //Clamp between 0-24
+            UpdateLighting(TimeOfDay / 164f);
         }
         else
         {
-            UpdateLighting(TimeOfDay / 24f);
+            UpdateLighting(TimeOfDay / 164f);
         }
     }
 
@@ -42,7 +42,7 @@ public class LightingManager : MonoBehaviour
         }
     }
 
-
+    [System.Obsolete]
     private void OnValidate()
     {
         if (DirectionalLight != null)
@@ -53,7 +53,7 @@ public class LightingManager : MonoBehaviour
         }
         else
         {
-            Light[] lights = GameObject.FindObjectsOfType<Light>();
+            Light[] lights = FindObjectsOfType<Light>();
             foreach(Light light in lights)
             {
                 if(light.type == LightType.Directional)
